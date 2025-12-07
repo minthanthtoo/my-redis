@@ -21,6 +21,8 @@ app.get("/random", (req, res) => {
   res.send(msg);
 });
 
-app.listen(10000, () => {
-  console.log("String service running on port 10000");
+const PORT = process.env.PORT || 10000;
+
+app.listen(PORT, () => {
+  console.log("String service running on port", PORT);
 });
