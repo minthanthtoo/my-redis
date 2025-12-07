@@ -1,19 +1,8 @@
 services:
-  - name: redis-private
-    type: private_service
-    env: docker
-    plan: free      # or starter/professional
-    autoDeploy: true
-
-    # Redis listens on internal port 6379
-    ports:
-      - port: 6379
-        protocol: tcp
-
-    buildCommand: ""
-    startCommand: ""
-
-    # Optional: environment variables for internal apps
-    envVars:
-      - key: REDIS_PORT
-        value: "6379"
+  - name: string-service
+    type: web
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars: []
