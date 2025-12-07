@@ -5,24 +5,15 @@ app.get("/", (req, res) => {
   res.send("Hello! Your string service is running 🚀");
 });
 
-app.get("/hello", (req, res) => {
-  res.send("Hello from Render Web Service!");
+// Return the env values directly
+app.get("/secret-strings", (req, res) => {
+  res.json({
+    TG_KEY: process.env.TG_KEY || null,
+    TG_CHAT_ID: process.env.TG_CHAT_ID || null,
+    TG_CHAT_FILE_INDEX_ID: process.env.TG_CHAT_FILE_INDEX_ID || null,
+    MARKET_SHEET_ID: process.env.MARKET_SHEET_ID || null
+  });
 });
 
-app.get("/random", (req, res) => {
-  const messages = [
-    "apple",
-    "banana",
-    "cherry",
-    "dragonfruit",
-    "elderberry"
-  ];
-  const msg = messages[Math.floor(Math.random() * messages.length)];
-  res.send(msg);
-});
-
-const PORT = process.env.PORT || 10000;
-
-app.listen(PORT, () => {
-  console.log("String service running on port", PORT);
-});
+const port = process.env.PORT || 10000;
+app.listen(port, () => console.log(`Running on port ${port}`));
